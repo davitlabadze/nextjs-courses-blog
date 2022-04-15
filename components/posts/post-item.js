@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link"
+import classes from "./post-item.module.css";
 
 function PostItem(props) {
     const { title, image,excerpt,date,slug} = props.post;
@@ -11,10 +12,10 @@ function PostItem(props) {
     const imagePath = `/images/posts/${slug}/${image}`;
     const linkPath = `/posts/${slug}`;
   return (
-      <li className="w-96 border-2 shadow-xl text-center pb-2 rounded-2xl mt-10 bg-white">
+      <li className={classes.post}>
           <Link href={linkPath}>
             <a>
-                <div className="flex-shrink-0 ">
+                <div className={classes.image}>
                     <Image src={imagePath} alt={title} width={300} height={200} layout="responsive" className="object-cover rounded-t-2xl" />
                 </div>
                 <div>

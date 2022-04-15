@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Logo from "./logo";
+import classes from "./main-navigation.module.css"
 function MainNavigation() {
-    return <header className="p-12 bg-black flex justify-around text-white">
+    return <header className={classes.header}>
        <Link href="/" >
         <a>
         <Logo />
@@ -9,8 +10,10 @@ function MainNavigation() {
        </Link>
         <nav>
             <ul>
-                <li className="space-x-2">
+                <li>
                     <Link href="/posts">Posts</Link> 
+                </li>
+                <li>
                     <Link href="/contact">Contact</Link> 
                 </li>
             </ul>
