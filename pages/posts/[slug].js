@@ -1,35 +1,33 @@
-import PostContent from "../../components/posts/post-detail/post-content";
-import { getPostData, getPostsFiles } from "../../lib/posts-util";
+import PostContent from '../../components/posts/post-detail/post-content';
+import { getPostData, getPostsFiles } from '../../lib/posts-util';
 
 function PostDetailPage(props) {
-   return <div className="flex justify-center">
-      <PostContent post={props.post}/>
-   </div>
+  return <PostContent post={props.post} />;
 }
 
-export function getStaticProps(context){
-   const {params} = context;
-   const {slug} = params;
+export function getStaticProps(context) {
+  const { params } = context;
+  const { slug } = params;
 
-   const postData = getPostData(slug);
+  const postData = getPostData(slug);
 
-   return {
-      props: {
-         post:postData
-      },
-      revalidate: 600
-   };
+  return {
+    props: {
+      post: postData,
+    },
+    revalidate: 600,
+  };
 }
 
-export function getStaticPaths(){
-   const postFilenames =  getPostsFiles();
-   const slugs = postFilenames.map(filename => filename.replace(/\.md$/, ''))
+export function getStaticPaths() {
+  const postFilenames = getPostsFiles();
 
+  const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ''));
 
-   return {
-      paths: slugs.map((slug) => ({params: {slug:slug}})),
-      fallback: false
-   };
+  return {
+    paths: slugs.map((slug) => ({ params: { slug: slug } })),
+    fallback: false,
+  };
 }
 
 export default PostDetailPage;
